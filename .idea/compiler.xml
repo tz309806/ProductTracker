@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ProductTracker" />
+        <module name="ProductTracker-app" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
       <module name="ProductTracker" target="1.5" />
+      <module name="ProductTracker-app" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
