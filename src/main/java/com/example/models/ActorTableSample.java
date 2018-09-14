@@ -1,20 +1,31 @@
 package main.models;
 
+import lombok.Data;
+import org.springframework.stereotype.Component;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Date;
 
+@Data
+@Entity
+@Component
 public class ActorTableSample {
 
-    private int actorId;
+    private @Id @GeneratedValue Long actorId;
     private String firstName;
     private String lastName;
     private Date lastUpdated;
 
-    public int getActorId() {
-        return actorId;
-    }
 
-    public void setActorId(int actorId) {
-        this.actorId = actorId;
+    private ActorTableSample() {}
+
+
+    public ActorTableSample(String firstName, String lastName, Date lastUpdated) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastUpdated = lastUpdated;
     }
 
     public String getFirstName() {
