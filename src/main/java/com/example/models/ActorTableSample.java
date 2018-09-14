@@ -1,28 +1,26 @@
-package main.models;
+package com.example.models;
 
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.util.Date;
+
 
 @Data
 @Entity
-@Component
 public class ActorTableSample {
 
     private @Id @GeneratedValue Long actorId;
     private String firstName;
     private String lastName;
-    private Date lastUpdated;
+    private String lastUpdated;
 
 
     private ActorTableSample() {}
 
 
-    public ActorTableSample(String firstName, String lastName, Date lastUpdated) {
+    public ActorTableSample(String firstName, String lastName, String lastUpdated) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.lastUpdated = lastUpdated;
@@ -44,11 +42,11 @@ public class ActorTableSample {
         this.lastName = lastName;
     }
 
-    public Date getLastUpdated() {
+    public String getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(Date lastUpdated) {
+    public void setLastUpdated(String lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 }
