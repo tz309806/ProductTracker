@@ -21,16 +21,16 @@ import javax.sql.DataSource;
 @PropertySource("classpath:application.properties")
 public class MySQLAppConfig {
 
-    @Value("${spring.datasource.driver-class-name}")
+    @Value("${app.datasource.driverClassName}")
     String driverClassName;
 
-    @Value("${spring.datasource.url}")
+    @Value("${app.datasource.url}")
     String url;
 
-    @Value("${spring.datasource.username}")
+    @Value("${app.datasource.username}")
     String userName;
 
-    @Value("${spring.datasource.password}")
+    @Value("${app.datasource.password}")
     String passWord;
 
     @Bean(name = "dataSource")

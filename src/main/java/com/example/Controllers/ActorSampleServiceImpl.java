@@ -3,7 +3,13 @@ package com.example.Controllers;
 import com.example.models.ActorDAO;
 import com.example.models.ActorTableSample;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+
+
+@Service
+@Transactional
 public class ActorSampleServiceImpl implements ActorSampleService {
 
     private ActorDAO actorDAO;
@@ -14,7 +20,12 @@ public class ActorSampleServiceImpl implements ActorSampleService {
     }
 
     @Override
-    public ActorTableSample findById(int Id) {
-        return this.actorDAO.findById(Id);
+    public ActorTableSample findById(int id) {
+        return this.actorDAO.findById(id);
+    }
+
+    @Override
+    public ActorTableSample findByFirstName(String firstName) {
+        return this.actorDAO.findByFirstName(firstName);
     }
 }

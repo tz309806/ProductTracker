@@ -15,14 +15,16 @@ public class Application implements CommandLineRunner {
 @Autowired
     ActorSampleService actorSampleService;
 
+
 public static void main(String[] args){
     SpringApplication app = new SpringApplication(Application.class);
     app.run(args);
 }
 
     @Override
-    public void run(String... args) throws Exception {
-        ActorTableSample actorTableSample = this.actorSampleService.findById(4);
-        System.out.println("Params are : " + actorTableSample.getFirstName()+ " " + actorTableSample.getLastName() );
+    public void run(String... args){
+        ActorTableSample actorTableSample = this.actorSampleService.findById(1);
+//        ActorTableSample actorTableSample = this.actorSampleService.findByFirstName("JENNIFER");
+        System.out.println("Params are : " + actorTableSample.getFirstName()+ " " + actorTableSample.getLastName()+actorTableSample.getLastUpdated() );
     }
 }

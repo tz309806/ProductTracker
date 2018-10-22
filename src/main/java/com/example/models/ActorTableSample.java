@@ -1,43 +1,54 @@
 package com.example.models;
 
-import com.example.Controllers.HomeController;
-import lombok.Data;
-import lombok.extern.log4j.Log4j;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 
-@Data
-@Entity(name="actor")
+@Entity
+@Table(name = "sakila.actor")
 @NamedQueries({
         @NamedQuery(
                 name = "findActorTableSampleById",
-                query = "from ActorTableSample a where a.actor_id=:id"
-        )
+                query = "from ActorTableSample a where a.id=:id"
+        ),
+        @NamedQuery(
+                name = "findActorTableSampleByFirstName",
+                query = "from ActorTableSample a where a.firstName=:firstName"
+        ),
 
 })
-public class ActorTableSample extends HomeController{
+public class ActorTableSample {
 
-    public @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
-    Long actorId;
-
-    @Column(name="first_name")
+    @Id @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column(name = "actor_id")
+    private int id;
+    @Column(name = "first_name")
     private String firstName;
-    @Column(name="last_name")
+    @Column(name = "last_name")
     private String lastName;
-    @Column(name="last_update")
-    private String lastUpdated;
+    @Column(name = "last_update")
+    private Timestamp lastUpdated;
 
 
     public ActorTableSample() {}
 
 
-    public ActorTableSample(String firstName, String lastName, String lastUpdated) {
+    public ActorTableSample(String firstName, String lastName, Timestamp lastUpdated, int id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.lastUpdated = lastUpdated;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -56,16 +67,12 @@ public class ActorTableSample extends HomeController{
         this.lastName = lastName;
     }
 
-    public String getLastUpdated() {
+    public Timestamp getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(String lastUpdated) {
+    public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
-    }
-
-    public void me() {
-
     }
 
 }

@@ -36,4 +36,16 @@ public ActorDAOImpl(SessionFactory sessionFactory){
         ActorTableSample actorTableSample = query.getSingleResult();
         return actorTableSample;
     }
+
+
+    @Override
+    public ActorTableSample findByFirstName(String firstName) {
+        Session session = this.sessionFactory.getCurrentSession();
+        TypedQuery<ActorTableSample> query = session.getNamedQuery("findActorTableSampleByFirstName");
+        System.out.println("Got query");
+        System.out.println("FIRST NAME IS: " + firstName);
+        query.setParameter("firstName", firstName);
+        ActorTableSample actorTableSample = query.getSingleResult();
+        return actorTableSample;
+    }
 }
