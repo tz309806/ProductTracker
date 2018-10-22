@@ -1,23 +1,37 @@
 package com.example.models;
 
+import com.example.Controllers.HomeController;
 import lombok.Data;
+import lombok.extern.log4j.Log4j;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Data
-@Entity
-public class ActorTableSample {
+@Entity(name="actor")
+@NamedQueries({
+        @NamedQuery(
+                name = "findActorTableSampleById",
+                query = "from ActorTableSample a where a.actor_id=:id"
+        )
 
-    private @Id @GeneratedValue Long actorId;
+})
+public class ActorTableSample extends HomeController{
+
+    public @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
+    Long actorId;
+
+    @Column(name="first_name")
     private String firstName;
+    @Column(name="last_name")
     private String lastName;
+    @Column(name="last_update")
     private String lastUpdated;
 
 
-    private ActorTableSample() {}
+    public ActorTableSample() {}
 
 
     public ActorTableSample(String firstName, String lastName, String lastUpdated) {
@@ -49,4 +63,9 @@ public class ActorTableSample {
     public void setLastUpdated(String lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
+
+    public void me() {
+
+    }
+
 }
