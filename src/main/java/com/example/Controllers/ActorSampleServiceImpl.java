@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 
 @Service
@@ -27,5 +28,10 @@ public class ActorSampleServiceImpl implements ActorSampleService {
     @Override
     public ActorTableSample findByFirstName(String firstName) {
         return this.actorDAO.findByFirstName(firstName);
+    }
+
+    @Override
+    public List<ActorTableSample> findAllByFirstName(String firstName) {
+        return null;
     }
 }
