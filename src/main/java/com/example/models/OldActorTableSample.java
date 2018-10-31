@@ -1,35 +1,13 @@
 package com.example.models;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
 
-import javax.naming.Name;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 
 @Entity
 @Table(name = "sakila.actor")
-@NamedQueries({
-        @NamedQuery(
-                name = "findActorTableSampleById",
-                query = "from ActorTableSample a where a.id=:id"
-        ),
-        @NamedQuery(
-                name = "findActorTableSampleByFirstName",
-                query = "from ActorTableSample a where a.firstName=:firstName"
-        ),
-        @NamedQuery(
-                name = "findAllActorFirstNamesById",
-                query= "from ActorTableSample a where a.id=:id"
-        ),
-        @NamedQuery(
-                name="createNewActor",
-                query="insert into ActorTableSample(id, firstName, lastName, lastUpdated)" + "(select id, firstName, lastName, lastUpdated from OldActorTableSample)"
-        )
-
-})
-public class ActorTableSample {
+public class OldActorTableSample {
 
     @Id @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "actor_id")
@@ -42,10 +20,10 @@ public class ActorTableSample {
     private Timestamp lastUpdated;
 
 
-    public ActorTableSample() {}
+    public OldActorTableSample() {}
 
 
-    public ActorTableSample(int id, String firstName, String lastName, Timestamp lastUpdated) {
+    public OldActorTableSample(int id, String firstName, String lastName, Timestamp lastUpdated) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;

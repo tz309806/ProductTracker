@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.TypedQuery;
+import java.sql.Timestamp;
+import java.util.List;
 
 
 @Repository
@@ -47,5 +49,28 @@ public ActorDAOImpl(SessionFactory sessionFactory){
         query.setParameter("firstName", firstName);
         ActorTableSample actorTableSample = query.getSingleResult();
         return actorTableSample;
+    }
+
+    @Override
+    public List<ActorTableSample> findAllById(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        TypedQuery<ActorTableSample> query = session.getNamedQuery("findAllActorFirstNamesById");
+        System.out.println("getting find all actors first name by id");
+        query.setParameter("id", id);
+        List<ActorTableSample> actorTableSample = query.getResultList();
+        return actorTableSample;
+
+    }
+
+    @Override
+    public int addNewActor(int id, String firstName, String lastName, Timestamp lastUpdated) {
+        Session session = this.sessionFactory.getCurrentSession();
+        TypedQuery<ActorTableSample> query = session.getNamedQuery("createNewActor");
+        query.setParameter("id", id);
+        query.setParameter("firstName", firstName);
+        query.setParameter("lastName", lastName);
+        query.setParameter("lastUpdated", lastUpdated);
+        int newEntry = query.executeUpdate();
+        return newEntry;
     }
 }
